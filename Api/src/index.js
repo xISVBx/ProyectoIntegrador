@@ -8,6 +8,15 @@ import "./models/vehiculos_marca.js"
 import "./models/vehiculos_motor.js"
 import "./models/vehiculos_tipo.js"
 import "./models/vehiculos_trasmision.js"
+import "./models/vehiculos.js"
+import "./models/roles_empleados.js"
+import "./models/empleados.js"
+import "./models/comprasventas.js"
+
+
+
+
+
 
 
 async function main(){
@@ -22,4 +31,5 @@ async function main(){
     app.listen(3000)
     console.log('listening on port 3000')
 }
+
 main()
