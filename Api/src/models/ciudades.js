@@ -15,7 +15,7 @@ export const Ciudades = sequelize.define('ciudades',{
     }
 
 });
-
+//constrain departamento
 Ciudades.hasMany(Departamentos,{
     foreignKey: 'id_ciudad',
     sourceKey: 'id_ciudad'

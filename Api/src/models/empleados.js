@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import {Roles_empleados} from "./roles_empleados.js"
 
 export const Empleados = sequelize.define('empleados',{
     id_empleado:{
@@ -43,4 +44,12 @@ export const Empleados = sequelize.define('empleados',{
         type:DataTypes.DATE,
         allowNull:false
     }
+})
+Roles_empleados.hasMany(Empleados,{
+    foreignKey: 'id_rol',
+    source_key:'id_rol'
+})
+Empleados.belongsTo(Roles_empleados,{
+    foreignKey:'id_rol',
+    targetKey:'id_rol'
 })

@@ -1,29 +1,34 @@
 import { Sequelize, DataTypes } from "sequelize";
 import {sequelize} from "../database/database.js"
+import {Vehiculos_categoria} from "./vehiculos_categoria.js"
+import {Vehiculos_marca} from "./vehiculos_marca.js"
+import {Vehiculos_tipo} from "./vehiculos_tipo.js"
+import {Vehiculos_motor} from "./vehiculos_motor.js"
+import {Vehiculos_trasmision} from "./vehiculos_trasmision.js"
 
 export const Vehiculos = sequelize.define('vehiculos',{
-    vehiculo_id:{
+    vehiculos_id:{
         type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true
     },
-    vehiculo_nombre:{
+    vehiculos_nombre:{
         type:DataTypes.STRING(20),
         allowNull:false
     },
-    vehiculo_anio:{
+    vehiculos_anio:{
         type:DataTypes.DATE,
         allowNull:false
     },
-    vehiculo_cilindraje:{
+    vehiculos_cilindraje:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
-    vehiculo_potencia:{
+    vehiculos_potencia:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
-    vehiculo_velocidad:{
+    vehiculos_velocidad:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
@@ -35,71 +40,71 @@ export const Vehiculos = sequelize.define('vehiculos',{
         type:DataTypes.BOOLEAN,
         allowNull:false
     },
-    vehiculo_garantia_fecha:{
+    vehiculos_garantia_fecha:{
         type:DataTypes.DATE,
         allowNull:false
     },
-    vehiculo_garantia_km:{
+    vehiculos_garantia_km:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
-    vehiculo_tecnologia_uno:{
+    vehiculos_tecnologia_uno:{
         type:DataTypes.STRING(30),
         allowNull:false
     },
-    vehiculo_tecnologia_dos:{
+    vehiculos_tecnologia_dos:{
         type:DataTypes.STRING(30),
         allowNull:false
     },
-    vehiculo_tecnologia_tres:{
+    vehiculos_tecnologia_tres:{
         type:DataTypes.STRING(30),
         allowNull:false
     },
-    vehiculo_tecnologia_cuatro:{
+    vehiculos_tecnologia_cuatro:{
         type:DataTypes.STRING(30),
         allowNull:false
     },
-    vehiculo_foto_uno:{
+    vehiculos_foto_uno:{
         type:DataTypes.STRING(200),
         allowNull:false
     },
-    vehiculo_foto_dos:{
+    vehiculos_foto_dos:{
         type:DataTypes.STRING(200),
         allowNull:false
     },
-    vehiculo_foto_tres:{
+    vehiculos_foto_tres:{
         type:DataTypes.STRING(200),
         allowNull:false
     },
-    vehiculo_foto_cuatro:{
+    vehiculos_foto_cuatro:{
         type:DataTypes.STRING(200),
         allowNull:false
     },
-    vehiculo_foto_cinco:{
+    vehiculos_foto_cinco:{
         type:DataTypes.STRING(200),
         allowNull:false
     },
-    vehiculo_video:{
+    vehiculos_video:{
         type:DataTypes.STRING(200),
         allowNull:false
     },
-    vehiculo_descripcion:{
+    vehiculos_descripcion:{
         type:DataTypes.STRING(300),
         allowNull:false
     },
-    vehiculo_categoria_id:{
+    vehiculos_categoria_id:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
-    vehiculo_marca_id:{
+    vehiculos_marca_id:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
-    vehiculo_tipo_id:{
+    vehiculos_tipo_id:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
-    vehiculo_motor_id:{
+    vehiculos_motor_id:{
         type:DataTypes.INTEGER,
         allowNull:false
     },
@@ -107,4 +112,50 @@ export const Vehiculos = sequelize.define('vehiculos',{
         type:DataTypes.INTEGER,
         allowNull:false
     }
+})
+//constrain vehiculos categoria
+Vehiculos_categoria.hasMany(Vehiculos,{
+    foreignKey: 'vehiculos_categoria_id',
+    sourceKey: 'vehiculos_categoria_id'
+    
+});
+Vehiculos.belongsTo(Vehiculos_categoria,{
+    foreignKey: 'vehiculos_categoria_id',
+    targetId: 'vehiculos_categoria_id'
+})
+//constrain vehiculos marca
+Vehiculos_marca.hasMany(Vehiculos,{
+    foreignKey:'vehiculos_marca_id',
+    sourceKey:'vehiculos_marca_id'
+})
+Vehiculos.belongsTo(Vehiculos_marca,{
+    foreignKey:'vehiculos_marca_id',
+    targetId:'vehiculos_marca_id'
+})
+//constrain vehiculos tipo 
+Vehiculos_tipo.hasMany(Vehiculos,{
+    foreignKey:'vehiculos_tipo_id',
+    sourceKey:'vehiculos_tipo_id'
+})
+Vehiculos.belongsTo(Vehiculos_tipo,{
+    foreignKey:'vehiculos_tipo_id',
+    targetId:'vehiculos_tipo_id'
+})
+//constrain vehiculos motor
+Vehiculos_motor.hasMany(Vehiculos,{
+    foreignKey:'vehiculos_motor_id',
+    sourceKey:'vehiculos_motor_id'
+})
+Vehiculos.belongsTo(Vehiculos_motor,{
+    foreignKey:'vehiculos_motor_id',
+    targetId:'vehiculos_motor_id'
+})
+//constrain vehiculos trasmision
+Vehiculos_trasmision.hasMany(Vehiculos,{
+    foreignKey:'vehiculos_trasmision_id',
+    sourceKey:'vehiculos_trasmision_id'
+})
+Vehiculos.belongsTo(Vehiculos_trasmision,{
+    foreignKey:'vehiculos_trasmision_id',
+    targetId:'vehiculos_trasmision_id'
 })
